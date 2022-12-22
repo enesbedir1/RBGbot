@@ -19,9 +19,6 @@ def write_characters(path, dict):
 
 def setattr_qualified(obj, name, value):
     parts = name.split(".")
-    print(parts)
     for attr in parts[:-1]:
         obj = getattr(obj, attr)
-    print(getattr(obj, parts[-1]))
     setattr(obj, parts[-1], type(getattr(obj, parts[-1]))(value))
-    print(type(getattr(obj, parts[-1])))

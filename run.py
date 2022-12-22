@@ -2,7 +2,7 @@ import telegram.ext
 from asyncore import dispatcher
 import random
 import operations
-from character import character_dict
+from character import character_dict, cwd
 from utils import read_characters, write_characters
 
 token = "5902060357:AAHJ2Wxo48lBT76OWHq9lHIDUgPFkkbJ3vk"
@@ -34,6 +34,6 @@ def add_to_all_operations():
 
 if __name__ == "__main__":
     add_to_all_operations()
-    read_characters("/home/aenesbedir/RPGFather/character.yaml", character_dict)
+    read_characters(cwd, character_dict)
     updater.start_polling()
     updater.idle()

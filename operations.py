@@ -1,6 +1,6 @@
 import telegram.ext
 import random
-from character import character, character_dict
+from character import character, character_dict, cwd
 from utils import write_characters, setattr_qualified
 
 class operation():
@@ -33,7 +33,14 @@ class dice(operation):
                 
         elif len(context.args) == 2:
             if context.args[0].isdigit() and context.args[1].isdigit():
-                update.message.reply_text("diced between {} and {}: {}".format(context.args[0], context.args[1], random.randint(int(context.args[0]), int(context.args[1]))))
+                result = "diced btw 1 and {}. Numbers: ".format(context.args[0])
+                total = 0
+                for i in range(int(context.args[1])):
+                    rnd = random.randint(1, int(context.args[0]))
+                    total += rnd
+                    result += " {} ".format(rnd)
+                result += "-> total={}".format(total)
+                update.message.reply_text(result)
             else:
                 update.message.reply_text("First two arguments should be integer!")
 
@@ -52,7 +59,7 @@ class create_ch(operation):
                 update.message.reply_text("There is already a character has name " + context.args[0])
                 return
             character_dict[context.args[0]] = character(context.args[0])
-            write_characters("/home/aenesbedir/RPGFather/character.yaml", character_dict)
+            write_characters(cwd, character_dict)
 
     def name(self):
         return "create_ch"
@@ -72,7 +79,7 @@ class set_ch(operation):
                 update.message.reply_text(context.args[1] + "is not a variable of a char")
                 return
             setattr_qualified(character_dict[context.args[0]], context.args[1], context.args[2])
-            write_characters("/home/aenesbedir/RPGFather/character.yaml", character_dict)
+            write_characters(cwd, character_dict)
             update.message.reply_text(f"{context.args[0]}.{context.args[1]} is updated to {context.args[2]}.")
             
     def name(self):

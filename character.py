@@ -1,5 +1,7 @@
 import typing
+import os
 
+cwd = os.path.join(os.getcwd(),  "character.yaml")
 
 class character(object):
     # idendity
@@ -63,14 +65,12 @@ class character(object):
 
     def to_string_all(self):
         result = ""
-        print(self.__dict__)
         for k, v in self.to_dict().items():
             result += k + ": " + str(v) + "\n"
         return  result
         
     def to_string_defined(self):
         result = ""
-        print(self.__dict__)
         for k, v in self.__dict__.items():
             result += k + ": " + str(v) + "\n"
         return  result
