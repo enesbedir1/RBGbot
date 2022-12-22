@@ -1,0 +1,23 @@
+- !character
+  name: muto
+  father_name: sorus
+  race: yökü
+  sub_race: kızıl
+  job: demirci
+  intelligence: 13
+  build_up: 9
+  muscle: 5
+  stamina: 9
+  accuracy: 15
+  insight: 18
+  poison: 10
+  scouting: 10
+  suffocation: 10
+  construction: 10
+  talkativeness: 10
+  degeneration: 10
+  money_making: 10
+  stun: 10
+  current_money: 16
+  current_health: 10
+
